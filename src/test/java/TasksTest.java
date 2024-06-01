@@ -79,6 +79,64 @@ public class TasksTest {
     }
 
     @Test
+    public void equalsDifferentClass() {
+        Task task = new SimpleTask(5, "Позвонить родителям");
+        Object other = new Object();
+
+        boolean expected = false;
+        boolean actual = task.equals(other);
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void hashCodeSameId() {
+        Task task1 = new SimpleTask(5, "Позвонить родителям");
+        Task task2 = new SimpleTask(5, "Позвонить сестре");
+
+        int expected = task1.hashCode();
+        ;
+        int actual = task2.hashCode();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void hashCodeDifferentId() {
+        Task task1 = new SimpleTask(5, "Позвонить родителям");
+        Task task2 = new SimpleTask(6, "Позвонить сестре");
+
+        int expected = task1.hashCode();
+        ;
+        int actual = task2.hashCode();
+
+        Assertions.assertNotEquals(expected, actual);
+    }
+
+    @Test
+    public void noMatchesWithNonEmptyQuery() {
+        Task task = new SimpleTask(5, "Позонить родителям");
+
+        String query = "456687hvgb";
+        boolean expected = false;
+        boolean actual = task.matches(query);
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void epicNotMatchesWrongQuery() {
+        String[] subtasks = {"Молоко", "Яйца", "Хлеб"};
+        Epic epic = new Epic(55, subtasks);
+
+        String query = "Яблоко";
+        boolean expected = false;
+        boolean actual = epic.matches(query);
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
 
     public void shouldMatchSimpleTaskInQuery() {
         SimpleTask simpleTask = new SimpleTask(5, "Позвонить родителям");
