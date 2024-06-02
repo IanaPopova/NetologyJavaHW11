@@ -285,7 +285,7 @@ public class TasksTest {
         String[] subtasks = {"Молоко", "Яйца", "Хлеб"};
         Epic epic = new Epic(55, subtasks);
 
-        String[] query = {"Молоко", "Яйца", "Хлеб"};
+        String query = "Хлеб";
 
         boolean expected = true;
         boolean actual = epic.matches(query);
@@ -300,7 +300,7 @@ public class TasksTest {
         String[] subtasks = {"Молоко", "Яйца", "Хлеб"};
         Epic epic = new Epic(55, subtasks);
 
-        String[] query = {"Молоко"};
+        String query = "Молоко";
 
         boolean expected = true;
         boolean actual = epic.matches(query);
@@ -310,11 +310,11 @@ public class TasksTest {
 
     @Test
 
-    public void shouldMatchEpicPartSubtaskInQuery() {
+    public void shouldMatchEpicSecondSubtaskInQuery() {
         String[] subtasks = {"Молоко", "Яйца", "Хлеб"};
         Epic epic = new Epic(55, subtasks);
 
-        String[] query = {"Молоко", "Яйца"};
+        String query = "Яйца";
 
         boolean expected = true;
         boolean actual = epic.matches(query);
@@ -328,7 +328,7 @@ public class TasksTest {
         String[] subtasks = {"Молоко", "Яйца", "Хлеб"};
         Epic epic = new Epic(55, subtasks);
 
-        String[] query = {"Кофе", "Чай", "Печенье"};
+        String query = "Кофе";
 
         boolean expected = false;
         boolean actual = epic.matches(query);
