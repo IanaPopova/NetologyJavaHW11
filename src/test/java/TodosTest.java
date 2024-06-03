@@ -33,6 +33,54 @@ public class TodosTest {
     }
 
     @Test
+    public void shouldAddOneTask() {
+        SimpleTask simpleTask = new SimpleTask(5, "Позвонить родителям");
+
+        Todos todos = new Todos();
+
+        todos.add(simpleTask);
+
+        Task[] expected = {simpleTask};
+        Task[] actual = todos.findAll();
+
+        Assertions.assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldAddTwoTasks() {
+
+        String[] subtasks = {"Молоко", "Яйца", "Хлеб"};
+        Epic epic = new Epic(55, subtasks);
+
+        Meeting meeting = new Meeting(
+                555,
+                "Выкатка 3й версии приложения",
+                "Приложение НетоБанка",
+                "Во вторник после обеда"
+        );
+
+        Todos todos = new Todos();
+
+        todos.add(epic);
+        todos.add(meeting);
+
+        Task[] expected = {epic, meeting};
+        Task[] actual = todos.findAll();
+
+        Assertions.assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldAddNoTasks() {
+        Todos todos = new Todos();
+
+        Task[] expected = {};
+        Task[] actual = todos.findAll();
+
+        Assertions.assertArrayEquals(expected, actual);
+    }
+
+    @Test
 
     public void shouldSearchSimpleTaskInTasksQuery() {
         SimpleTask simpleTask = new SimpleTask(5, "Позвонить родителям");
