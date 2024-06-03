@@ -244,7 +244,9 @@ public class TodosTest {
 
     @Test
 
-    public void shouldSearchMultipleTasksInMeeting() {
+    public void shouldSearchMultipleTasksWhenMatchingQuery() {
+        SimpleTask simpleTask = new SimpleTask(5, "Позвонить родителям");
+
         Meeting meeting = new Meeting(
                 555,
                 "Выкатка 3й версии приложения",
@@ -254,10 +256,11 @@ public class TodosTest {
 
         Todos todos = new Todos();
         todos.add(meeting);
+        todos.add(simpleTask);
 
-        String query = "риложен";
+        String query = "П";
 
-        Task[] expected = {meeting};
+        Task[] expected = {meeting, simpleTask};
         Task[] actual = todos.search(query);
 
         Assertions.assertArrayEquals(expected, actual);
