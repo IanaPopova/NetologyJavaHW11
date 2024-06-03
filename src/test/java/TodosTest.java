@@ -279,6 +279,21 @@ public class TodosTest {
         Assertions.assertArrayEquals(expected, actual);
     }
 
+    @Test
+
+    public void shouldSearchSingleTask() {
+        SimpleTask simpleTask = new SimpleTask(5, "Позвонить родителям");
+
+        Todos todos = new Todos();
+        todos.add(simpleTask);
+
+        String query = "родител";
+
+        Task[] expected = {simpleTask};
+        Task[] actual = todos.search(query);
+
+        Assertions.assertArrayEquals(expected, actual);
+    }
 }
 
 
