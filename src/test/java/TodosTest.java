@@ -242,6 +242,43 @@ public class TodosTest {
         Assertions.assertArrayEquals(expected, actual);
     }
 
+    @Test
+
+    public void shouldSearchMultipleTasksInMeeting() {
+        Meeting meeting = new Meeting(
+                555,
+                "Выкатка 3й версии приложения",
+                "Приложение НетоБанка",
+                "Во вторник после обеда"
+        );
+
+        Todos todos = new Todos();
+        todos.add(meeting);
+
+        String query = "риложен";
+
+        Task[] expected = {meeting};
+        Task[] actual = todos.search(query);
+
+        Assertions.assertArrayEquals(expected, actual);
+    }
+
+    @Test
+
+    public void shouldNotSearchAnything() {
+        SimpleTask simpleTask = new SimpleTask(5, "Позвонить родителям");
+
+        Todos todos = new Todos();
+        todos.add(simpleTask);
+
+        String query = "Здесь ничего нет";
+
+        Task[] expected = {};
+        Task[] actual = todos.search(query);
+
+        Assertions.assertArrayEquals(expected, actual);
+    }
+
 }
 
 
